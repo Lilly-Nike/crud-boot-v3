@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User page</title>
+    <head th:replace="fragments/header.html :: head"></head>
+</head>
+<body>
+
+<nav th:replace="fragments/header.html :: nav"></nav>
+
+<div class="container-fluid h-100">
+    <div class="row h-100">
+        <br>
+        <div th:replace="fragments/sidebar.html :: sidebarUser"></div>
+        <div class="col-10 bg-light">
+            <div class="container-fluid">
+                <div class="raw">
+                    <div class="col mt-3">
+                        <h1>User information-page</h1>
+                        <div class="col border border-bottom-0 bg-light p-2">
+                            <h4 class="mb-0">About user</h4>
+                        </div>
+                        <div class="w-100"></div>
+                        <div class="col p-3 border bg-white text-dark">
+                            <table class="table table-striped text-center">
+                                <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">First Name</th>
+                                    <th scope="col">Last Name</th>
+                                    <th scope="col">Age</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Role</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="u, iterStat : ${user}"
+                                    th:style="${iterStat.odd}? 'font-weight: bold;'">
+                                    <th scope="row" th:text="${u.id}"></th>
+                                    <td th:text="${u.firstName}"></td>
+                                    <td th:text="${u.lastName}"></td>
+                                    <td th:text="${u.age}"></td>
+                                    <td th:text="${u.email}"></td>
+                                    <td>
+                                    <span th:each="role : ${u.roles}"
+                                          th:text="${role.name.replace('ROLE_', '') + ' '}"></span>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:replace="fragments/footer.html :: scripts"></script>
+</body>
+</html>
