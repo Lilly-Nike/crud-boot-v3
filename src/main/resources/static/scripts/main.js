@@ -21,12 +21,12 @@ function fillUsersTable() {
         data.forEach(user => {
             tableUsers.append(
                 '<tr>' +
-                '<td id="uuid_' + user.id + '_id">' + user.id + '</td>' +
-                '<td id="uuid_' + user.id + '_firstName">' + user.firstName + '</td>' +
-                '<td id="uuid_' + user.id + '_lastName">' + user.lastName + '</td>' +
-                '<td id="uuid_' + user.id + '_age">' + user.age + '</td>' +
-                '<td id="uuid_' + user.id + '_email">' + user.email + '</td>' +
-                '<td id="uuid_' + user.id + '_roles">' + user.roles.map(role => role.name.replace("ROLE_", " ")) + '</td>' +
+                '<td id="' + user.id + '_id">' + user.id + '</td>' +
+                '<td id="' + user.id + '_firstName">' + user.firstName + '</td>' +
+                '<td id="' + user.id + '_lastName">' + user.lastName + '</td>' +
+                '<td id="' + user.id + '_age">' + user.age + '</td>' +
+                '<td id="' + user.id + '_email">' + user.email + '</td>' +
+                '<td id="' + user.id + '_roles">' + user.roles.map(role => role.name.replace("ROLE_", " ")) + '</td>' +
                 '<td><button class="btn btn-info" data-toggle="modal" data-target="#editModal" onclick="openEditModal(' + user.id + ')">Edit</button></td>' +
                 '<td><button class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" onclick="openDeleteModal(' + user.id + ')">Delete</button></td>' +
                 '</tr>'
@@ -95,11 +95,11 @@ function editUser(id) {
         return response.json()
     }).then(user => {
         console.log(user)
-        tableUsers.find('#uuid_' + user.id + '_firstName').text(user.firstName)
-        tableUsers.find('#uuid_' + user.id + '_lastName').text(user.lastName)
-        tableUsers.find('#uuid_' + user.id + '_age').text(user.age)
-        tableUsers.find('#uuid_' + user.id + '_email').text(user.email)
-        tableUsers.find('#uuid_' + user.id + '_roles').text(user.roles.map(role => role.name.replace("ROLE_", " ")));
+        tableUsers.find('#' + user.id + '_firstName').text(user.firstName)
+        tableUsers.find('#' + user.id + '_lastName').text(user.lastName)
+        tableUsers.find('#' + user.id + '_age').text(user.age)
+        tableUsers.find('#' + user.id + '_email').text(user.email)
+        tableUsers.find('#' + user.id + '_roles').text(user.roles.map(role => role.name.replace("ROLE_", " ")));
         editModal.hide()
     })
 }
