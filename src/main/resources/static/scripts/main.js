@@ -142,6 +142,7 @@ function deleteUser(id) {
         if (response.status !== 200) {
             console.log(response.body)
         }
+        fillUsersTable()
         deleteModal.hide()
     })
 }
