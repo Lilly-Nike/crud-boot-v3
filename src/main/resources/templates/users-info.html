@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/header.html :: head"></head>
+
+<body>
+
+<nav th:replace="fragments/header.html :: nav"></nav>
+
+<div class="container-fluid h-100">
+    <div class="row h-100">
+        <br>
+        <div th:replace="fragments/sidebar.html :: sidebarAdmin"></div>
+        <div class="col-10 bg-light">
+            <div class="container-fluid">
+                <div class="raw">
+                    <div class="col mt-3">
+                        <h1>Admin panel</h1>
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Users table</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="profile-tab" th:href="@{/admin/add}" role="tab" aria-controls="profile" aria-selected="false">New User</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <div class="col border border-bottom-0 bg-light p-2">
+                                    <h4 class="mb-0">All users</h4>
+                                </div>
+                                <div class="w-100"></div>
+                                <div class="col p-3 border bg-white text-dark">
+                                    <table class="table table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">First Name</th>
+                                            <th scope="col">Last Name</th>
+                                            <th scope="col">Age</th>
+                                            <th scope="col">Email</th>
+                                            <th scope="col">Role</th>
+                                            <th scope="col">Edit</th>
+                                            <th scope="col">Delete</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="userTable">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:replace="fragments/editModal"/>
+<script th:replace="fragments/deleteModal"/>
+
+<script th:replace="fragments/footer.html :: scripts"/>
+<script src="/scripts/main.js"></script>
+
+</body>
+</html>

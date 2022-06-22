@@ -1,0 +1,44 @@
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Delete user</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form role="form">
+                    <div class="form-group">
+                        <label for="idDelete" class="col-form-label">ID</label>
+                        <input readonly id="idDelete" type="text" class="form-control" name="id">
+                    </div>
+                    <div class="form-group">
+                        <label for="firstNameDelete" class="col-form-label">First name</label>
+                        <input readonly id="firstNameDelete" type="text" class="form-control" name="firstName">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastNameDelete" class="col-form-label">Last name</label>
+                        <input readonly id="lastNameDelete" type="text" class="form-control" name="lastName">
+                    </div>
+                    <div class="form-group">
+                        <label for="ageDelete" class="col-form-label">Age</label>
+                        <input readonly id="ageDelete" type="text" class="form-control" name="age">
+                    </div>
+                    <div class="form-group">
+                        <label for="emailDelete" class="col-form-label">Email</label>
+                        <input readonly id="emailDelete" type="email" class="form-control" name="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="rolesDelete" class="col-form-label">Role</label>
+                        <select readonly name="roles" multiple class="form-control" id="rolesDelete" required></select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button id="buttonDelete" type="submit" class="btn btn-danger">Delete</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

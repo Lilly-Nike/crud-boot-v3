@@ -1,5 +1,6 @@
 package ru.kata.spring.boot_security.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -21,5 +22,9 @@ public class Role implements GrantedAuthority {
     @Override
     public String getAuthority() {
         return name;
+    }
+
+    public Role(Long id) {
+        this.id = id;
     }
 }

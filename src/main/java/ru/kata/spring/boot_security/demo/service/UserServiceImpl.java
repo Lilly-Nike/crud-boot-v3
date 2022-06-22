@@ -6,10 +6,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.kata.spring.boot_security.demo.dao.UserDao;
+import ru.kata.spring.boot_security.demo.dto.UserDto;
+import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.util.SecurityUtil;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -17,6 +21,7 @@ public class UserServiceImpl implements UserService {
 
     private final UserDao userDao;
     private final PasswordEncoder passwordEncoder;
+    private final RoleService roleService;
 
     @Override
     @Transactional(readOnly = true)
@@ -33,20 +38,27 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public void save(User user) {
-        if (user.getPassword() != null && !user.getPassword().isBlank()) {
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
-        }
+        processBeforePersisted(user);
         userDao.save(user);
     }
 
     @Override
     @Transactional
-    public void update(User user) {
-        if (user.getPassword() != null && !user.getPassword().isBlank()) {
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
-        }
+    public UserDto update(UserDto userDto) {
+        var user = new User();
+        user.setId(userDto.getId());
+        user.setFirstName(userDto.getFirstName());
+        user.setLastName(userDto.getLastName());
+        user.setAge(userDto.getAge());
+        user.setEmail(userDto.getEmail());
+        user.setPassword(userDto.getPassword());
+        user.setRoles(userDto.getRolesId().stream()
+                .map(Role::new)
+                .collect(Collectors.toSet()));
+        processBeforePersisted(user);
         userDao.update(user);
         SecurityUtil.refreshRolesForAuthenticatedUser(user);
+        return new UserDto(user);
     }
 
     @Override
@@ -61,5 +73,20 @@ public class UserServiceImpl implements UserService {
     public User getUserByEmail(String email) {
         return userDao.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found by email: " + email));
+    }
+
+    private void processBeforePersisted(User user) {
+        if (user.getPassword() != null && !user.getPassword().isBlank()) {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+        }
+        if (user.getRoles() == null || user.getRoles().isEmpty()) {
+            var role = roleService.getRoleByName("ROLE_USER");
+            user.setRoles(Set.of(role));
+        } else {
+            var roles = user.getRoles().stream()
+                    .map(role -> roleService.findById(role.getId()))
+                    .collect(Collectors.toSet());
+            user.setRoles(roles);
+        }
     }
 }
