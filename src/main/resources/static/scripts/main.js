@@ -20,7 +20,7 @@ function fillUsersTable() {
     }).then(data => {
         data.forEach(user => {
             tableUsers.append(
-                '<tr>' +
+                '<tr id="' + user.id + '_row">' +
                 '<td id="' + user.id + '_id">' + user.id + '</td>' +
                 '<td id="' + user.id + '_firstName">' + user.firstName + '</td>' +
                 '<td id="' + user.id + '_lastName">' + user.lastName + '</td>' +
@@ -142,7 +142,7 @@ function deleteUser(id) {
         if (response.status !== 200) {
             console.log(response.body)
         }
-        fillUsersTable()
+        tableUsers.find('#' + id + '_row').remove()
         deleteModal.hide()
     })
 }
