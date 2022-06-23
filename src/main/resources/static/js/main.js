@@ -1,11 +1,58 @@
 const tableUsers = $('#userTable')
 const editModal = $('#editModal')
 const deleteModal = $('#deleteModal')
+const userAddForm = $('#userAddform');
 
 fillUsersTable()
 
-function fillUsersTable() {
+$('#nav-users_table-link').click(() => {
+    loadUsersTable();
+});
+$('#nav-user_form-link').click(() => {
+    loadAddForm();
+});
 
+function loadUsersTable() {
+    $('#nav-users_table-link').addClass('active');
+    $('#nav-users_table').addClass('show').addClass('active');
+    $('#nav-user_form-link').removeClass('active');
+    $('#nav-user_form').removeClass('show').removeClass('active');
+    fillUsersTable()
+}
+
+function loadAddForm() {
+    $('#nav-user_form-link').addClass('active');
+    $('#nav-user_form').addClass('show').addClass('active');
+    $('#nav-users_table-link').removeClass('active');
+    $('#nav-users_table').removeClass('show').removeClass('active');
+    loadUserForInsertForm();
+}
+
+function loadUserForInsertForm() {
+
+    userAddForm.find('#newfirstName').val('');
+    userAddForm.find('#newlastName').val('');
+    userAddForm.find('#newage').val('0');
+    userAddForm.find('#newemail').val('');
+    userAddForm.find('#newpassword').val('');
+
+    fetch('/api/v1/users/roles', {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json'
+        }
+    }).then(response => {
+        userAddForm.find('#newroles').empty();
+        return response.json()
+    }).then(roles => {
+        const roleSelect = userAddForm.find('#newRoles')
+        roles.forEach(role => {
+            roleSelect.append($('<option>').val(role.id).text(role.name.replace("ROLE_", "")));
+        });
+    });
+}
+
+function fillUsersTable() {
     fetch('/api/v1/users', {
         method: 'GET',
         headers: {
@@ -18,6 +65,7 @@ function fillUsersTable() {
         }
         return response.json()
     }).then(data => {
+        tableUsers.empty()
         data.forEach(user => {
             tableUsers.append(
                 '<tr id="' + user.id + '_row">' +

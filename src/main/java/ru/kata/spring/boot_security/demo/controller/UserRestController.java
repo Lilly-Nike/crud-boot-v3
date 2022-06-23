@@ -33,6 +33,13 @@ public class UserRestController {
         return ResponseEntity.ok(new UserDto(userService.findById(id)));
     }
 
+    @GetMapping("/roles")
+    public ResponseEntity<List<RoleDto>> getAllRoles() {
+        return ResponseEntity.ok(roleService.findAll().stream()
+                .map(RoleDto::new)
+                .collect(Collectors.toList()));
+    }
+
     @GetMapping("{id}/roles")
     public ResponseEntity<UserWithAllRolesDto> getByIdAndAllRoles(@PathVariable Long id) {
         var response = new UserWithAllRolesDto(
