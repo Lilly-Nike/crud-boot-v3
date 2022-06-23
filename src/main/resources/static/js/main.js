@@ -1,7 +1,7 @@
 const tableUsers = $('#userTable')
 const editModal = $('#editModal')
 const deleteModal = $('#deleteModal')
-const userAddForm = $('#userAddform');
+const userAddForm = $('#userAddForm');
 
 userAddForm.find(':submit').click(() => {
     insertUser();
