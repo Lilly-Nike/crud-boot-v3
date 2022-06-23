@@ -67,6 +67,13 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new UsernameNotFoundException("User not found by email: " + email));
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public UserDto getByEmail(String email) {
+        var user = getUserByEmail(email);
+        return new UserDto(user);
+    }
+
     private User mapToUser(UserDto userDto) {
         var user = new User();
         user.setId(userDto.getId());
