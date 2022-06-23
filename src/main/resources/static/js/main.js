@@ -27,8 +27,8 @@ function fillUsersTable() {
                 '<td id="' + user.id + '_age">' + user.age + '</td>' +
                 '<td id="' + user.id + '_email">' + user.email + '</td>' +
                 '<td id="' + user.id + '_roles">' + user.roles.map(role => role.name.replace("ROLE_", " ")) + '</td>' +
-                '<td><button class="btn btn-info" data-toggle="modal" data-target="#editModal" onclick="openEditModal(' + user.id + ')">Edit</button></td>' +
-                '<td><button class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" onclick="openDeleteModal(' + user.id + ')">Delete</button></td>' +
+                '<td><button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#editModal" onclick="openEditModal(' + user.id + ')">Edit</button></td>' +
+                '<td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="openDeleteModal(' + user.id + ')">Delete</button></td>' +
                 '</tr>'
             )
         })
