@@ -76,7 +76,7 @@ public class UserServiceImpl implements UserService {
         user.setEmail(userDto.getEmail());
         user.setPassword(userDto.getPassword());
         user.setRoles(
-                (userDto.getRoles() == null)
+                (userDto.getRolesId() == null)
                         ? Set.of()
                         : userDto.getRolesId().stream()
                             .map(Role::new)
