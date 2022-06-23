@@ -26,7 +26,6 @@ $('#nav-user-area-link').click(() => {
 })
 
 function loadAdminTab() {
-    console.log('Ebana admin')
     $('#nav-admin-area-link').addClass('active');
     $('#admin-area').removeClass('visually-hidden').addClass('active');
     $('#nav-user-area-link').removeClass('active');
@@ -35,7 +34,6 @@ function loadAdminTab() {
 }
 
 function loadUserTab() {
-    console.log('Ebana user')
     $('#nav-admin-area-link').removeClass('active');
     $('#admin-area').addClass('visually-hidden').removeClass('active');
     $('#nav-user-area-link').addClass('active');
