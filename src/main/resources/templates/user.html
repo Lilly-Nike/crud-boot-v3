@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/header.html :: head"></head>
+
+<body>
+
+<nav th:replace="fragments/header.html :: nav"></nav>
+
+<div class="container-fluid h-100">
+    <div class="row h-100">
+        <br>
+        <div th:replace="fragments/sidebar.html :: sidebarAdmin"></div>
+        <div class="col-10 bg-light">
+            <div class="container-fluid">
+                <div class="raw">
+
+                    <div class="tab-pane active" id="user-area" role="tabpanel" aria-labelledby="user-area-tab">
+                        <h1>User information-page</h1>
+                        <div class="container-fluid">
+                            <div class="row border">
+                                <h5 class="m-2">About user</h5>
+                            </div>
+                            <div class="row border bg-white pb-2">
+                                <table class="table table-borderless m-3">
+                                    <thead>
+                                    <tr class="border-top">
+                                        <th scope="col">First name</th>
+                                        <th scope="col">Last name</th>
+                                        <th scope="col">Age</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Roles</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="simpleTableUser" th:name="${user_auth.getName()}">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:replace="fragments/editModal"/>
+
+<script th:replace="fragments/deleteModal"/>
+
+<script th:replace="fragments/footer.html :: scripts"/>
+
+<script src="js/main.js"></script>
+
+</body>
+</html>

@@ -27,6 +27,6 @@ public class PageController {
     public String getUserPage(Model model, Principal principal) {
         model.addAttribute("user_auth", principal);
         model.addAttribute("active", false);
-        return "admin";
+        return "user";
     }
 }
