@@ -20,7 +20,8 @@
                         <div class="container-fluid">
                             <nav>
                                 <div class="nav nav-tabs border-bottom-0" id="nav-tab" role="tablist">
-                                    <a class="nav-link active" id="nav-users_table-link" data-toggle="tab" href="#nav-users_table"
+                                    <a class="nav-link active" id="nav-users_table-link" data-toggle="tab"
+                                       href="#nav-users_table"
                                        role="tab" aria-controls="nav-users_table">Users table</a>
                                     <a class="nav-link" id="nav-user_form-link" data-toggle="tab" href="#nav-user_form"
                                        role="tab" aria-controls="nav-user_form">New user</a>
@@ -64,7 +65,7 @@
                                         <th scope="col">Roles</th>
                                     </tr>
                                     </thead>
-                                    <tbody id="simpleTableUser">
+                                    <tbody id="simpleTableUser" th:name="${user_auth.getName()}">
                                     </tbody>
                                 </table>
                             </div>

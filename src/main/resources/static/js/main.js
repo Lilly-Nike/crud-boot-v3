@@ -8,11 +8,10 @@ userAddForm.find(':submit').click(() => {
     insertUser();
 });
 
-fillUsersTable()
-
 $('#nav-users_table-link').click(() => {
     loadUsersTable();
 });
+
 $('#nav-user_form-link').click(() => {
     loadAddForm();
 });
@@ -24,6 +23,8 @@ $('#nav-admin-area-link').click(() => {
 $('#nav-user-area-link').click(() => {
     loadUserTab()
 })
+
+fillUsersTable()
 
 function loadAdminTab() {
     $('#nav-admin-area-link').addClass('active');
@@ -58,11 +59,14 @@ function loadAddForm() {
 }
 
 function fillSimpleUsersTable() {
-    fetch('/api/v1/users/' + 1, {
-        method: 'GET',
+    const email = simpleTableUser.attr('name')
+    fetch('/api/v1/users/email', {
+        method: 'POST',
         headers: {
+            'Content-Type': 'text/html',
             'Accept': 'application/json'
-        }
+        },
+        body: email
     }).then(response => {
         if (response.status !== 200) {
             console.log(response.body)

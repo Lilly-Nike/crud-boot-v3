@@ -21,10 +21,4 @@ public class PageController {
         model.addAttribute("user_auth", principal);
         return "admin";
     }
-
-    @GetMapping("/user")
-    public String getUserPage(Model model, Principal principal) {
-        model.addAttribute("user_auth", principal);
-        return "user";
-    }
 }

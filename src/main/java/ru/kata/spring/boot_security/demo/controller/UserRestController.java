@@ -54,6 +54,12 @@ public class UserRestController {
         return ResponseEntity.ok(response);
     }
 
+    @PostMapping("/email")
+    public ResponseEntity<UserDto> getByEmail(@RequestBody String email) {
+        var user = userService.getUserByEmail(email);
+        return ResponseEntity.ok(new UserDto(user));
+    }
+
     @PostMapping
     public ResponseEntity<Void> save(@RequestBody UserDto user) {
         userService.save(user);
