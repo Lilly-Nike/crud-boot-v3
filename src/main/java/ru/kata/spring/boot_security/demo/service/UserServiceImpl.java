@@ -37,7 +37,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public void save(User user) {
+    public void save(UserDto userDto) {
+        User user = mapToUser(userDto);
         processBeforePersisted(user);
         userDao.save(user);
     }
@@ -45,16 +46,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public UserDto update(UserDto userDto) {
-        var user = new User();
-        user.setId(userDto.getId());
-        user.setFirstName(userDto.getFirstName());
-        user.setLastName(userDto.getLastName());
-        user.setAge(userDto.getAge());
-        user.setEmail(userDto.getEmail());
-        user.setPassword(userDto.getPassword());
-        user.setRoles(userDto.getRolesId().stream()
-                .map(Role::new)
-                .collect(Collectors.toSet()));
+        User user = mapToUser(userDto);
         processBeforePersisted(user);
         userDao.update(user);
         SecurityUtil.refreshRolesForAuthenticatedUser(user);
@@ -75,9 +67,28 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new UsernameNotFoundException("User not found by email: " + email));
     }
 
+    private User mapToUser(UserDto userDto) {
+        var user = new User();
+        user.setId(userDto.getId());
+        user.setFirstName(userDto.getFirstName());
+        user.setLastName(userDto.getLastName());
+        user.setAge(userDto.getAge());
+        user.setEmail(userDto.getEmail());
+        user.setPassword(userDto.getPassword());
+        user.setRoles(userDto.getRolesId().stream()
+                .map(Role::new)
+                .collect(Collectors.toSet()));
+        return user;
+    }
+
     private void processBeforePersisted(User user) {
         if (user.getPassword() != null && !user.getPassword().isBlank()) {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
+        } else {
+            if (user.getId() != null) {
+                var existUser = userDao.findById(user.getId());
+                user.setPassword(existUser.getPassword());
+            }
         }
         if (user.getRoles() == null || user.getRoles().isEmpty()) {
             var role = roleService.getRoleByName("ROLE_USER");

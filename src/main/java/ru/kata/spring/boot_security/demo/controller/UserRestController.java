@@ -52,7 +52,7 @@ public class UserRestController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> save(@RequestBody User user) {
+    public ResponseEntity<Void> save(@RequestBody UserDto user) {
         userService.save(user);
         return ResponseEntity.ok().build();
     }

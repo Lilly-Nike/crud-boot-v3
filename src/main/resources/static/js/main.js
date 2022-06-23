@@ -3,6 +3,10 @@ const editModal = $('#editModal')
 const deleteModal = $('#deleteModal')
 const userAddForm = $('#userAddform');
 
+userAddForm.find(':submit').click(() => {
+    insertUser();
+});
+
 fillUsersTable()
 
 $('#nav-users_table-link').click(() => {
@@ -42,7 +46,7 @@ function loadUserForInsertForm() {
             'Accept': 'application/json'
         }
     }).then(response => {
-        userAddForm.find('#newroles').empty();
+        userAddForm.find('#newRoles').empty();
         return response.json()
     }).then(roles => {
         const roleSelect = userAddForm.find('#newRoles')
@@ -193,4 +197,31 @@ function deleteUser(id) {
         tableUsers.find('#' + id + '_row').remove()
         deleteModal.hide()
     })
+}
+
+function insertUser() {
+    let user = {
+        'firstName': userAddForm.find('#newFirstName').val(),
+        'lastName': userAddForm.find('#newLastName').val(),
+        'age': userAddForm.find('#newAge').val(),
+        'email': userAddForm.find('#newEmail').val(),
+        'password': userAddForm.find('#newPassword').val(),
+        'rolesId': userAddForm.find('#newRoles').val().map(roleId => parseInt(roleId))
+    }
+
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    let request = new Request('/api/v1/users', {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify(user)
+    });
+
+    fetch(request)
+        .then(response => {
+            if (response.status === 200) {
+                loadUsersTable();
+            }
+        });
 }
