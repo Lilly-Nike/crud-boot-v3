@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public void save(UserDto userDto) {
-        User user = mapToUser(userDto);
+        var user = mapToUser(userDto);
         processBeforePersisted(user);
         userDao.save(user);
     }
@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public UserDto update(UserDto userDto) {
-        User user = mapToUser(userDto);
+        var user = mapToUser(userDto);
         processBeforePersisted(user);
         userDao.update(user);
         SecurityUtil.refreshRolesForAuthenticatedUser(user);
@@ -75,9 +75,13 @@ public class UserServiceImpl implements UserService {
         user.setAge(userDto.getAge());
         user.setEmail(userDto.getEmail());
         user.setPassword(userDto.getPassword());
-        user.setRoles(userDto.getRolesId().stream()
-                .map(Role::new)
-                .collect(Collectors.toSet()));
+        user.setRoles(
+                (userDto.getRoles() == null)
+                        ? Set.of()
+                        : userDto.getRolesId().stream()
+                            .map(Role::new)
+                            .collect(Collectors.toSet())
+        );
         return user;
     }
 
@@ -90,7 +94,7 @@ public class UserServiceImpl implements UserService {
                 user.setPassword(existUser.getPassword());
             }
         }
-        if (user.getRoles() == null || user.getRoles().isEmpty()) {
+        if (user.getRoles().isEmpty()) {
             var role = roleService.getRoleByName("ROLE_USER");
             user.setRoles(Set.of(role));
         } else {

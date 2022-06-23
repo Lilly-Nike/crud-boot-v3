@@ -19,7 +19,7 @@ public class PageController {
     @GetMapping("/admin")
     public String getAdminPage(Model model, Principal principal) {
         model.addAttribute("user_auth", principal);
-        return "users-info";
+        return "admin";
     }
 
     @GetMapping("/user")

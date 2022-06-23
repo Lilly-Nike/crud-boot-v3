@@ -33,7 +33,7 @@ public class UserDto {
         this.lastName = user.getLastName();
         this.email = user.getEmail();
         this.age = user.getAge();
-        this.roles = user.getRoles().stream()
+        this.roles = (user.getRoles() == null) ? Set.of() : user.getRoles().stream()
                 .map(RoleDto::new)
                 .collect(Collectors.toSet());
     }
