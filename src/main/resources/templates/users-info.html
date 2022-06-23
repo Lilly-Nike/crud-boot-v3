@@ -18,10 +18,12 @@
                         <h1>Admin panel</h1>
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Users table</a>
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                                   aria-controls="home" aria-selected="true">Users table</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="profile-tab" th:href="@{/admin/add}" role="tab" aria-controls="profile" aria-selected="false">New User</a>
+                                <a class="nav-link" id="profile-tab" th:href="@{/admin/add}" role="tab"
+                                   aria-controls="profile" aria-selected="false">New User</a>
                             </li>
                         </ul>
                         <div class="tab-content" id="myTabContent">
@@ -61,7 +63,7 @@
 <script th:replace="fragments/deleteModal"/>
 
 <script th:replace="fragments/footer.html :: scripts"/>
-<script src="/scripts/main.js"></script>
+<script src="js/main.js"></script>
 
 </body>
 </html>

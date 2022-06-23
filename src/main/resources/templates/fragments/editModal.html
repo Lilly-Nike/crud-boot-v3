@@ -1,14 +1,12 @@
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="editModalLabel">Edit user</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <button class="btn-close" data-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form role="form" onsubmit="return true;">
+                <form onsubmit="return false;">
                     <div class="form-group">
                         <label for="idEdit" class="col-form-label">ID</label>
                         <input id="idEdit" type="text" class="form-control" name="id">
@@ -37,11 +35,11 @@
                         <label for="rolesEdit" class="col-form-label">Role</label>
                         <select name="roles" multiple class="form-control" id="rolesEdit" required></select>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" id="buttonEdit" class="btn btn-info">Edit</button>
-                    </div>
                 </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button class="btn submit" id="buttonEdit">Edit</button>
             </div>
         </div>
     </div>

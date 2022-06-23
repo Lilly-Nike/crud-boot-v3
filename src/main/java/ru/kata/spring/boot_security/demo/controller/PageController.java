@@ -10,7 +10,7 @@ import java.security.Principal;
 
 @Controller
 @RequestMapping("/")
-public class UserController {
+public class PageController {
 
     @GetMapping("/login")
     public String getLoginPage() {
