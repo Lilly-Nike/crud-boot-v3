@@ -14,6 +14,7 @@
         <div class="col-10 bg-light">
             <div class="container-fluid">
                 <div class="raw">
+
                     <div class="tab-pane active" id="admin-area" role="tabpanel" aria-labelledby="admin-area-tab">
                         <h1>Admin panel</h1>
                         <div class="container-fluid">
@@ -45,6 +46,31 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="tab-pane visually-hidden" id="user-area" role="tabpanel" aria-labelledby="user-area-tab">
+                        <h1>User information-page</h1>
+                        <div class="container-fluid">
+                            <div class="row border">
+                                <h5 class="m-2">About user</h5>
+                            </div>
+                            <div class="row border bg-white pb-2">
+                                <table class="table table-borderless m-3">
+                                    <thead>
+                                    <tr class="border-top">
+                                        <th scope="col">First name</th>
+                                        <th scope="col">Last name</th>
+                                        <th scope="col">Age</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Roles</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="simpleTableUser">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>

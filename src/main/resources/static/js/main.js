@@ -2,6 +2,7 @@ const tableUsers = $('#userTable')
 const editModal = $('#editModal')
 const deleteModal = $('#deleteModal')
 const userAddForm = $('#userAddForm');
+const simpleTableUser = $('#simpleTableUser');
 
 userAddForm.find(':submit').click(() => {
     insertUser();
@@ -15,6 +16,32 @@ $('#nav-users_table-link').click(() => {
 $('#nav-user_form-link').click(() => {
     loadAddForm();
 });
+
+$('#nav-admin-area-link').click(() => {
+    loadAdminTab()
+})
+
+$('#nav-user-area-link').click(() => {
+    loadUserTab()
+})
+
+function loadAdminTab() {
+    console.log('Ebana admin')
+    $('#nav-admin-area-link').addClass('active');
+    $('#admin-area').removeClass('visually-hidden').addClass('active');
+    $('#nav-user-area-link').removeClass('active');
+    $('#user-area').addClass('visually-hidden').removeClass('active');
+    fillUsersTable()
+}
+
+function loadUserTab() {
+    console.log('Ebana user')
+    $('#nav-admin-area-link').removeClass('active');
+    $('#admin-area').addClass('visually-hidden').removeClass('active');
+    $('#nav-user-area-link').addClass('active');
+    $('#user-area').removeClass('visually-hidden').addClass('active');
+    fillSimpleUsersTable()
+}
 
 function loadUsersTable() {
     $('#nav-users_table-link').addClass('active');
@@ -30,6 +57,32 @@ function loadAddForm() {
     $('#nav-users_table-link').removeClass('active');
     $('#nav-users_table').removeClass('show').removeClass('active');
     loadUserForInsertForm();
+}
+
+function fillSimpleUsersTable() {
+    fetch('/api/v1/users/' + 1, {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json'
+        }
+    }).then(response => {
+        if (response.status !== 200) {
+            console.log(response.body)
+            return;
+        }
+        return response.json()
+    }).then(user => {
+        simpleTableUser.empty()
+        simpleTableUser.append(
+            '<tr>' +
+            '<td>' + user.firstName + '</td>' +
+            '<td>' + user.lastName + '</td>' +
+            '<td>' + user.age + '</td>' +
+            '<td>' + user.email + '</td>' +
+            '<td>' + user.roles.map(role => role.name.replace("ROLE_", " ")) + '</td>' +
+            '</tr>'
+        )
+    })
 }
 
 function loadUserForInsertForm() {
