@@ -22,21 +22,27 @@ public class UserRestController {
 
     @GetMapping
     public ResponseEntity<List<UserDto>> getAll() {
-        return ResponseEntity.ok(userService.findAll().stream()
-                .map(UserDto::new)
-                .collect(Collectors.toList()));
+        return ResponseEntity.ok(
+                userService.findAll().stream()
+                        .map(UserDto::new)
+                        .collect(Collectors.toList())
+        );
     }
 
     @GetMapping("{id}")
     public ResponseEntity<UserDto> getById(@PathVariable Long id) {
-        return ResponseEntity.ok(new UserDto(userService.findById(id)));
+        return ResponseEntity.ok(
+                new UserDto(userService.findById(id))
+        );
     }
 
     @GetMapping("/roles")
     public ResponseEntity<List<RoleDto>> getAllRoles() {
-        return ResponseEntity.ok(roleService.findAll().stream()
-                .map(RoleDto::new)
-                .collect(Collectors.toList()));
+        return ResponseEntity.ok(
+                roleService.findAll().stream()
+                        .map(RoleDto::new)
+                        .collect(Collectors.toList())
+        );
     }
 
     @GetMapping("{id}/roles")
