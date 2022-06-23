@@ -22,37 +22,35 @@ public class UserRestController {
 
     @GetMapping
     public ResponseEntity<List<UserDto>> getAll() {
-        return ResponseEntity.ok(
-                userService.findAll().stream()
-                        .map(UserDto::new)
-                        .collect(Collectors.toList())
-        );
+        var dtoUsers = userService.findAll().stream()
+                .map(UserDto::new)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(dtoUsers);
     }
 
     @GetMapping("{id}")
     public ResponseEntity<UserDto> getById(@PathVariable Long id) {
-        return ResponseEntity.ok(
-                new UserDto(userService.findById(id))
-        );
+        var user = userService.findById(id);
+        var userDto = new UserDto(user);
+        return ResponseEntity.ok(userDto);
     }
 
     @GetMapping("/roles")
     public ResponseEntity<List<RoleDto>> getAllRoles() {
-        return ResponseEntity.ok(
-                roleService.findAll().stream()
-                        .map(RoleDto::new)
-                        .collect(Collectors.toList())
-        );
+        var dtoUsers = roleService.findAll().stream()
+                .map(RoleDto::new)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(dtoUsers);
     }
 
     @GetMapping("{id}/roles")
     public ResponseEntity<UserWithAllRolesDto> getByIdAndAllRoles(@PathVariable Long id) {
-        var response = new UserWithAllRolesDto(
-                new UserDto(userService.findById(id)),
-                roleService.findAll().stream()
-                        .map(RoleDto::new)
-                        .collect(Collectors.toList())
-        );
+        var user = userService.findById(id);
+        var userDto = new UserDto(user);
+        var dtoRoles = roleService.findAll().stream()
+                .map(RoleDto::new)
+                .collect(Collectors.toList());
+        var response = new UserWithAllRolesDto(userDto, dtoRoles);
         return ResponseEntity.ok(response);
     }
 
@@ -64,7 +62,8 @@ public class UserRestController {
 
     @PutMapping
     public ResponseEntity<UserDto> update(@RequestBody UserDto user) {
-        return ResponseEntity.ok(userService.update(user));
+        var updatedUser = userService.update(user);
+        return ResponseEntity.ok(updatedUser);
     }
 
     @DeleteMapping("{id}")
