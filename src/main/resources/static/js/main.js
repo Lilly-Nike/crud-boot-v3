@@ -24,7 +24,9 @@ $('#nav-user-area-link').click(() => {
     loadUserTab()
 })
 
-fillUsersTable()
+if (isAdmin) {
+    fillUsersTable()
+}
 fillSimpleUsersTable()
 
 function loadAdminTab() {

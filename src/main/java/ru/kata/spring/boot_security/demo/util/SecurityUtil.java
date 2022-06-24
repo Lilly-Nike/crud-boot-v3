@@ -20,4 +20,9 @@ public final class SecurityUtil {
             SecurityContextHolder.getContext().setAuthentication(token);
         }
     }
+
+    public static boolean isAdmin() {
+        return SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream()
+                .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_ADMIN"));
+    }
 }
