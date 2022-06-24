@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head th:replace="fragments/header.html :: head"></head>
 
@@ -15,7 +15,7 @@
             <div class="container-fluid">
                 <div class="raw">
 
-                    <div class="tab-pane active" id="admin-area" role="tabpanel" aria-labelledby="admin-area-tab">
+                    <div sec:authorize="hasRole('ADMIN')" class="tab-pane active" id="admin-area" role="tabpanel" aria-labelledby="admin-area-tab">
                         <h1>Admin panel</h1>
                         <div class="container-fluid">
                             <nav>

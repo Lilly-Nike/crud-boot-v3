@@ -25,6 +25,7 @@ $('#nav-user-area-link').click(() => {
 })
 
 fillUsersTable()
+fillSimpleUsersTable()
 
 function loadAdminTab() {
     $('#nav-admin-area-link').addClass('active');
