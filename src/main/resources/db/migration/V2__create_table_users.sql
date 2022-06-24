@@ -1,9 +1,9 @@
-create table users (
-    id bigint primary key auto_increment not null,
-    first_name varchar(255) not null,
-    last_name varchar(255) not null,
-    age int not null,
-    email varchar(255) not null,
-    password varchar(255) not null
+CREATE TABLE users (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    age INT NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL
 );
-create unique index idx_unique_users_email on users(email);
+CREATE UNIQUE INDEX idx_unique_users_email ON users(email);
