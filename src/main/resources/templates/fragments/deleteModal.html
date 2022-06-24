@@ -1,0 +1,46 @@
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Delete user</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <form onsubmit="return false;">
+                    <div class="form-group">
+                        <label for="idDelete" class="col-form-label">ID</label>
+                        <input readonly id="idDelete" type="text" class="form-control" name="id">
+                    </div>
+                    <div class="form-group">
+                        <label for="firstNameDelete" class="col-form-label">First name</label>
+                        <input readonly id="firstNameDelete" type="text" class="form-control" name="firstName">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastNameDelete" class="col-form-label">Last name</label>
+                        <input readonly id="lastNameDelete" type="text" class="form-control" name="lastName">
+                    </div>
+                    <div class="form-group">
+                        <label for="ageDelete" class="col-form-label">Age</label>
+                        <input readonly id="ageDelete" type="text" class="form-control" name="age">
+                    </div>
+                    <div class="form-group">
+                        <label for="emailDelete" class="col-form-label">Email</label>
+                        <input readonly id="emailDelete" type="email" class="form-control" name="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="rolesDelete" class="col-form-label">Role</label>
+                        <select readonly name="roles" multiple class="form-control" id="rolesDelete" required></select>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-info" id="buttonDelete" data-bs-dismiss="modal">Delete</button>
+            </div>
+
+        </div>
+    </div>
+</div>

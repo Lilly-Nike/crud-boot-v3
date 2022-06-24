@@ -1,0 +1,5 @@
+CREATE TABLE roles (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL
+);
+CREATE UNIQUE INDEX idx_unique_roles_name ON roles(name);

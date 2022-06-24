@@ -1,14 +1,13 @@
 package ru.kata.spring.boot_security.demo.util;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import ru.kata.spring.boot_security.demo.model.User;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class SecurityUtil {
-
-    private SecurityUtil() {
-
-    }
 
     public static void refreshRolesForAuthenticatedUser(User user) {
         var authentication = SecurityContextHolder.getContext().getAuthentication();

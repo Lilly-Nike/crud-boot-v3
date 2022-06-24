@@ -22,14 +22,14 @@ public class RoleServiceImpl implements RoleService {
                 .orElseThrow(() -> new UsernameNotFoundException("Role not found by name: " + name));
     }
 
-    @Transactional(readOnly = true)
     @Override
+    @Transactional(readOnly = true)
     public Set<Role> findAll() {
         return roleDao.findAll();
     }
 
-    @Transactional(readOnly = true)
     @Override
+    @Transactional(readOnly = true)
     public Role findById(long id) {
         return roleDao.findById(id)
                 .orElseThrow(() -> new UsernameNotFoundException("Role not found by id: " + id));

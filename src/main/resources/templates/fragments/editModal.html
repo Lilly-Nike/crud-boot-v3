@@ -1,0 +1,50 @@
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">Edit user</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <form onsubmit="return false;">
+                    <div class="form-group">
+                        <label for="idEdit" class="col-form-label">ID</label>
+                        <input id="idEdit" type="text" class="form-control" name="id">
+                    </div>
+                    <div class="form-group">
+                        <label for="firstNameEdit" class="col-form-label">First name</label>
+                        <input id="firstNameEdit" type="text" class="form-control" name="firstName">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastNameEdit" class="col-form-label">Last name</label>
+                        <input id="lastNameEdit" type="text" class="form-control" name="lastName">
+                    </div>
+                    <div class="form-group">
+                        <label for="ageEdit" class="col-form-label">Age</label>
+                        <input id="ageEdit" type="number" class="form-control" name="age">
+                    </div>
+                    <div class="form-group">
+                        <label for="emailEdit" class="col-form-label">Email</label>
+                        <input id="emailEdit" type="email" class="form-control" name="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="passwordEdit" class="col-form-label">Password</label>
+                        <input type="password" id="passwordEdit" class="form-control" name="password">
+                    </div>
+                    <div class="form-group">
+                        <label for="rolesEdit" class="col-form-label">Role</label>
+                        <select name="roles" multiple class="form-control" id="rolesEdit" required></select>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-info" id="buttonEdit" data-bs-dismiss="modal">Edit</button>
+            </div>
+
+        </div>
+    </div>
+</div>
