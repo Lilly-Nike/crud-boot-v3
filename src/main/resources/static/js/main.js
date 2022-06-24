@@ -80,6 +80,7 @@ function fillSimpleUsersTable() {
         simpleTableUser.empty()
         simpleTableUser.append(
             '<tr>' +
+            '<td>' + user.id + '</td>' +
             '<td>' + user.firstName + '</td>' +
             '<td>' + user.lastName + '</td>' +
             '<td>' + user.age + '</td>' +
@@ -233,7 +234,7 @@ function openDeleteModal(id) {
         deleteModal.find('#ageDelete').val(user.age)
         deleteModal.find('#emailDelete').val(user.email)
         deleteModal.find('#passwordDelete').val(user.password)
-        const selectRoles = deleteModal.find('#rolesEdit')
+        const selectRoles = deleteModal.find('#rolesDelete')
         selectRoles.empty()
         user.roles.forEach(role => {
             selectRoles.append(
