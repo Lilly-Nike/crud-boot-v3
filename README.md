@@ -13,7 +13,7 @@
 
 Дефолтные пользователи инициализируются с помощью flyway. см. директорию /resources/db/migration/
 ### Пользователи:
-- admin - логин: admin@mail.ru, пароль admin
-- user - логин: user@mail.ru, пароль user
+- admin - логин: admin@mail.ru, пароль: admin
+- user - логин: user@mail.ru, пароль: user
 
 
