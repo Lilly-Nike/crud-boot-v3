@@ -1,6 +1,6 @@
 # Тестовй проект созданый на фраймворке spring boot с использованием:
 ## spring web mvc
-## spring dat jpa
+## spring data jpa
 ## spring security
 ## thymeleaf
 ## flyway
