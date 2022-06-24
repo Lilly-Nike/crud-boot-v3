@@ -93,11 +93,11 @@ function fillSimpleUsersTable() {
 
 function loadUserForInsertForm() {
 
-    userAddForm.find('#newfirstName').val('');
-    userAddForm.find('#newlastName').val('');
-    userAddForm.find('#newage').val('0');
-    userAddForm.find('#newemail').val('');
-    userAddForm.find('#newpassword').val('');
+    userAddForm.find('#newFirstName').val('');
+    userAddForm.find('#newLastName').val('');
+    userAddForm.find('#newAge').val('0');
+    userAddForm.find('#newEmail').val('');
+    userAddForm.find('#newPassword').val('');
 
     fetch('/api/v1/users/roles', {
         method: 'GET',
