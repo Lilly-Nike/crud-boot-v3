@@ -173,12 +173,12 @@ function openEditModal(id) {
                 .prop('selected', user.roles.filter(r => r.id === role.id).length)
                 .val(role.id).text(role.name.replace("ROLE_", "")))
         })
-        editModal.find('#buttonEdit').attr('onClick', 'editUser(' + user.id + ')')
+        editModal.find('#buttonEdit').attr('onClick', 'editUser()')
         editModal.show()
     })
 }
 
-function editUser(id) {
+function editUser() {
     let user = {
         "id": parseInt(editModal.find('#idEdit').val()),
         "firstName": editModal.find('#firstNameEdit').val(),
@@ -189,17 +189,14 @@ function editUser(id) {
         "rolesId": editModal.find('#rolesEdit').val().map(roleId => parseInt(roleId))
     }
 
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    headers.append('Accept', 'application/json');
-
-    let request = new Request('/api/v1/users', {
+    fetch('/api/v1/users', {
         method: 'PUT',
-        headers: headers,
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
         body: JSON.stringify(user)
-    });
-
-    fetch(request).then(response => {
+    }).then(response => {
         if (response.status !== 200) {
             console.log(response.body)
         }
@@ -268,19 +265,15 @@ function insertUser() {
         'rolesId': userAddForm.find('#newRoles').val().map(roleId => parseInt(roleId))
     }
 
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-
-    let request = new Request('/api/v1/users', {
+    fetch('/api/v1/users', {
         method: 'POST',
-        headers: headers,
+        headers: {
+            'Content-Type': 'application/json'
+        },
         body: JSON.stringify(user)
+    }).then(response => {
+        if (response.status === 200) {
+            loadUsersTable();
+        }
     });
-
-    fetch(request)
-        .then(response => {
-            if (response.status === 200) {
-                loadUsersTable();
-            }
-        });
 }
